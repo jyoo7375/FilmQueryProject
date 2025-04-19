@@ -32,6 +32,7 @@ public class FilmQueryApp {
   private void startUserInterface(Scanner input) {
 	  boolean exit = false;
 	  
+	  //user story 1
 	  while(exit != true) {
 		  System.out.println("+-----------------------------+");
 		  System.out.println("|       Film Query Menu       |");
@@ -48,6 +49,22 @@ public class FilmQueryApp {
 	  
 		  switch(choice) {
 		  case 1:
+			  //user story 2
+			  System.out.println("Enter film Id: ");
+			  int filmId = input.nextInt();
+			  input.nextLine();
+			  
+			  Film film = db.findFilmById(filmId);
+			  
+			  if(film == null) {
+				  System.out.println("There is no film with that ID");
+			  } else {
+				  System.out.println("Film Title: " + film.getTitle());
+				  System.out.println("Film Description: " + film.getDescription());
+				  System.out.println("Release Year: " + film.getReleaseYear());
+				  System.out.println("Rating: " + film.getRating());
+				  
+			  }
 		  
 		  case 2:
 		  
