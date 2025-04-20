@@ -10,6 +10,7 @@ public class Film {
 	private String description;
 	private int releaseYear;
 	private int languageId;
+	private String languageName;
 	private int rentalDuration;
 	private double rentalRate;
 	private int length;
@@ -65,6 +66,13 @@ public class Film {
 		this.languageId = languageId;
 	}
 	
+	public String getLanguageName() {
+		return languageName;
+	}
+	
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
+	}
 	public int getRentalDuration() {
 		return rentalDuration;
 	}
@@ -126,6 +134,7 @@ public class Film {
 		.append(specialFeatures).append("]");
 		return builder.toString();
 	}
+
 	
 	
 }

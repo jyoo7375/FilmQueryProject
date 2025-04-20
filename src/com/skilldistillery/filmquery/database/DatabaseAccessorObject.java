@@ -31,7 +31,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  try {
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
 		
-		String sql = "SELECT * FROM film WHERE id = ?";
+		String sql = "SELECT * FROM film JOIN language ON film.language_id = language.id WHERE film.id = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, filmId);
 		
@@ -45,6 +45,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			foundFilm.setDescription(rs.getString("description"));
 			foundFilm.setReleaseYear(rs.getInt("release_year"));
 			foundFilm.setLanguageId(rs.getInt("language_id"));
+			foundFilm.setLanguageName(rs.getString("name"));
 			foundFilm.setRentalDuration(rs.getInt("rental_duration"));
 			foundFilm.setRentalRate(rs.getDouble("rental_rate"));
 			foundFilm.setLength(rs.getInt("length"));
@@ -106,7 +107,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	try {
 		Connection conn = DriverManager.getConnection(URL, USER, PASS);
 		
-		String sql = "Select * From Actor JOIN film_actor ON actor.id = film_actor.actor_id Where film_id = ?";
+		String sql = "SELECT * From Actor JOIN film_actor ON actor.id = film_actor.actor_id Where film_id = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, filmId);
 		
@@ -132,6 +133,48 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 	  
 	return foundActor;
+}
+
+@Override
+public List<Film> findFilmByKeyword(String keyword) {
+	List<Film> foundFilm = new ArrayList();
+	
+	try {
+		Connection conn = DriverManager.getConnection(URL,USER, PASS);
+		
+		String sql = "SELECT * FROM film JOIN language ON film.language_id = language.id WHERE title LIKE ? OR description LIKE ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, "%" + keyword + "%");
+		stmt.setString(2, "%" + keyword + "%");
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			Film film = new Film();
+			film.setId(rs.getInt("id"));
+			film.setTitle(rs.getString("title"));
+			film.setDescription(rs.getString("description"));
+			film.setReleaseYear(rs.getInt("release_year"));
+			film.setRating(rs.getString("rating"));
+			film.setLanguageId(rs.getInt("language_id"));
+			film.setLanguageName(rs.getString("name"));
+			film.setRentalDuration(rs.getInt("rental_duration"));
+			film.setRentalRate(rs.getDouble("rental_rate"));
+			film.setLength(rs.getInt("length"));
+			film.setReplacementCost(rs.getDouble("replacement_cost"));
+			film.setSpecialFeatures(rs.getString("special_features"));
+			foundFilm.add(film);
+			
+			
+		}
+		conn.close();
+		stmt.close();
+		rs.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return foundFilm;
 }
 
 }
