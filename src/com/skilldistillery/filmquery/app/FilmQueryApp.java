@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -60,13 +61,21 @@ public class FilmQueryApp {
 			  if(film == null) {
 				  System.out.println("There are no films with that ID");
 			  } else {
+				  System.out.println("+-----------------------------------------+");
+				  System.out.println("|              Film Details               |");
 				  System.out.println("Film Title: " + film.getTitle());
 				  System.out.println("Film Description: " + film.getDescription());
 				  System.out.println("Release Year: " + film.getReleaseYear());
 				  System.out.println("Rating: " + film.getRating());
 				  //user Story 4
 				  System.out.println("Language: " + film.getLanguageName());
-				  
+				  System.out.println("+-----------------------------------------+");
+				  System.out.println("|                 Casts:                  |");
+				  System.out.println("+-----------------------------------------+");
+				  for(Actor actor : film.getActors()){
+					  System.out.println(actor.getFirstName() + " " + actor.getLastName());
+				  }
+				  System.out.println("+-----------------------------------------+");
 			  }
 			  break;
 		  //user Story 3

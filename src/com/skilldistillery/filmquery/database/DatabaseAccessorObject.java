@@ -52,6 +52,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			foundFilm.setReplacementCost(rs.getDouble("replacement_cost"));
 			foundFilm.setRating(rs.getString("rating"));
 			foundFilm.setSpecialFeatures(rs.getString("special_features"));
+			foundFilm.setActors(findActorsByFilmId(filmId));
 			
 			
 			
@@ -113,14 +114,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		
 		ResultSet rs = stmt.executeQuery();
 		
-		if(rs.next()) {
+		while(rs.next()) {
 			Actor actor = new Actor();
 			actor.setId(rs.getInt("id"));
 			actor.setFirstName(rs.getString("first_name"));
 			actor.setLastName(rs.getString("last_name"));
 			foundActor.add(actor);
-			
-			return foundActor;
 			
 			
 		}
