@@ -20,6 +20,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> actors;
+	private List<String> categories;
 	
 	//no-arg ctor
 	
@@ -131,6 +132,13 @@ public class Film {
 		this.actors = actors;
 	}
 	
+	//goal 2
+	public List<String> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
+	}
 	
 	//to String
 	@Override
@@ -144,6 +152,7 @@ public class Film {
 		.append(specialFeatures).append("]");
 		return builder.toString();
 	}
+
 
 
 	

@@ -61,23 +61,44 @@ public class FilmQueryApp {
 			  if(film == null) {
 				  System.out.println("There are no films with that ID");
 			  } else {
-				  System.out.println("+-----------------------------------------+");
-				  System.out.println("|              Film Details               |");
-				  System.out.println("Film Title: " + film.getTitle());
-				  System.out.println("Film Description: " + film.getDescription());
-				  System.out.println("Release Year: " + film.getReleaseYear());
-				  System.out.println("Rating: " + film.getRating());
-				  //user Story 4
-				  System.out.println("Language: " + film.getLanguageName());
-				  System.out.println("+-----------------------------------------+");
-				  System.out.println("|                 Casts:                  |");
-				  System.out.println("+-----------------------------------------+");
-				  for(Actor actor : film.getActors()){
-					  System.out.println(actor.getFirstName() + " " + actor.getLastName());
-				  }
-				  System.out.println("+-----------------------------------------+");
-			  }
+			        System.out.println("=========================================");
+			        System.out.println("              Film Details               ");
+			        System.out.println("=========================================");
+			        System.out.println("Title        : " + film.getTitle());
+			        System.out.println("Description  : " + film.getDescription());
+			        System.out.println("Release Year : " + film.getReleaseYear());
+			        System.out.println("Rating       : " + film.getRating());
+			        //User story 4
+			        System.out.println("Language     : " + film.getLanguageName());
+			        System.out.println("=========================================");
+			        System.out.println("Casts:");
+			        for (Actor actor : film.getActors()) {
+			            System.out.println("- " + actor.getFirstName() + " " + actor.getLastName());
+			        }
+			        System.out.println("=========================================");
+			        //goal 1
+			        System.out.println("\nWhat would you like to do next?");
+			        System.out.println("1. Return to main menu");
+			        System.out.println("2. View all film details");
+			        
+			        int subChoice = input.nextInt();
+			        input.nextLine();
+			        
+			        if(subChoice == 2) {
+			        	System.out.println("+===============================================+");
+			        	System.out.println("Rental Duration: " + film.getRentalDuration());
+			        	System.out.println("Rental Rate: $" + film.getRentalRate());
+			        	System.out.println("Length: " + film.getLength());
+			        	System.out.println("Replacement Cost: $" + film.getReplacementCost());
+			        	System.out.println("Special Features: " + film.getSpecialFeatures());
+			        	System.out.println("+===============================================+");
+			        	
+			        }
+			    }
+			  
 			  break;
+			  
+			  
 		  //user Story 3
 		  case 2:
 			  System.out.println("Enter a keyword: ");
@@ -88,16 +109,42 @@ public class FilmQueryApp {
 			  if(films == null || films.isEmpty()) {
 				  System.out.println("There are no films with that keyword");
 			  } else {
-				  for (Film f : films) {
-					  System.out.println("Film Title: " + f.getTitle());
-					  System.out.println("Film Description: " + f.getDescription());
-					  System.out.println("Release Year: " + f.getReleaseYear());
-					  System.out.println("Rating: " + f.getRating());
-					  //user Story 4
-					  System.out.println("Language: " + f.getLanguageName());
-					  
-					  
-				  }
+			        for (Film f : films) {
+			            System.out.println("=========================================");
+			            System.out.println("              Film Details               ");
+			            System.out.println("=========================================");
+			            System.out.println("Title        : " + f.getTitle());
+			            System.out.println("Description  : " + f.getDescription());
+			            System.out.println("Release Year : " + f.getReleaseYear());
+			            System.out.println("Rating       : " + f.getRating());
+			            //User story 4
+			            System.out.println("Language     : " + f.getLanguageName());
+			            System.out.println("=========================================");
+			            System.out.println("Casts:");
+			            for (Actor actor : f.getActors()) {
+			                System.out.println("- " + actor.getFirstName() + " " + actor.getLastName());
+			            }
+			            System.out.println("=========================================");
+			            //goal 1
+			            System.out.println("\nWhat would you like to do next?");
+				        System.out.println("1. Return to main menu");
+				        System.out.println("2. View all film details");
+				        
+				        int subChoice = input.nextInt();
+				        input.nextLine();
+				        
+				        if(subChoice == 2) {
+				        	System.out.println("+===============================================+");
+				        	System.out.println("Rental Duration: " + f.getRentalDuration());
+				        	System.out.println("Rental Rate: $" + f.getRentalRate());
+				        	System.out.println("Length: " + f.getLength());
+				        	System.out.println("Replacement Cost: $" + f.getReplacementCost());
+				        	System.out.println("Special Features: " + f.getSpecialFeatures());
+				        	System.out.println("+===============================================+");
+				        	
+				        }
+				        break;
+			        }
 			  }
 			  break;
 			  

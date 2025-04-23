@@ -162,7 +162,9 @@ public List<Film> findFilmByKeyword(String keyword) {
 			film.setLength(rs.getInt("length"));
 			film.setReplacementCost(rs.getDouble("replacement_cost"));
 			film.setSpecialFeatures(rs.getString("special_features"));
+			film.setActors(findActorsByFilmId(film.getId()));
 			foundFilm.add(film);
+			
 			
 			
 		}
